@@ -1,40 +1,59 @@
 
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>مبادرة تمكين الاستراتيجيات التعليميه النوعيه بمدرستي</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-    <style>
-      body {
-        font-family: 'Tajawal', sans-serif;
-      }
-      @media print {
-        .no-print {
-          display: none !important;
-        }
-        .print-only {
-          display: block !important;
-        }
-      }
-    </style>
 
-<link rel="stylesheet" href="/index.css">
-  <script type="importmap">
-{
-  "imports": {
-    "react/": "https://esm.sh/react@^19.2.4/",
-    "react": "https://esm.sh/react@^19.2.4",
-    "@google/genai": "https://esm.sh/@google/genai@^1.38.0",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
-  }
-}
-</script>
-  <script type="module" crossorigin src="/assets/index-ZBS5t7mq.js"></script>
-</head>
-  <body class="bg-gray-50 text-gray-900">
-    <div id="root"></div>
+pacity-90">
+            حفظ الروابط
+          </button>
+          <div class="text-xs text-slate-500">
+            ملاحظة: إذا كان الرابط عربي طويل، انسخيه كما هو وابدئي بـ https://
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Print Only Footer -->
+  <footer class="print-only hidden max-w-5xl mx-auto px-4 pb-10">
+    <div class="text-center text-xs text-slate-500">
+      تم إنشاء الصفحة للطباعة والعرض — ©
+    </div>
+  </footer>
+
+  <script>
+    function updateQR() {
+      const url = document.getElementById("qrInput").value.trim();
+      const img = document.getElementById("qrImg");
+
+      if (!url || !url.startsWith("http")) {
+        alert("اكتبي رابط صحيح يبدأ بـ http أو https");
+        return;
+      }
+
+      // خدمة مجانية لتوليد QR كصورة
+      const encoded = encodeURIComponent(url);
+      img.src = "https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=" + encoded;
+    }
+
+    function updateLinks() {
+      const l1 = document.getElementById("link1Input").value.trim();
+      const l2 = document.getElementById("link2Input").value.trim();
+
+      if (l1) document.getElementById("link1").href = l1;
+      if (l2) document.getElementById("link2").href = l2;
+
+      alert("تم حفظ الروابط ✅");
+    }
+
+    function toggleDark() {
+      document.documentElement.classList.toggle("dark");
+      document.body.classList.toggle("bg-slate-50");
+      document.body.classList.toggle("bg-slate-900");
+      document.body.classList.toggle("text-slate-900");
+      document.body.classList.toggle("text-white");
+    }
+
+    // QR افتراضي (اختياري)
+    document.getElementById("qrInput").value = "https://example.com";
+    updateQR();
+  </script>
 </body>
 </html>
